@@ -5,37 +5,6 @@
 <title>Hacking notes &amp; stories</title>
 </head>
 <body>
-<p>
-Recently had to compile one CMake-driven project with MinGW on windows. Why is programming in Windows always such a pain? Anyway...
-</p>
-<p>
-This time I don't have to blame Windows, however. The problem was in linking to boost.
-Very basic CMake configuration for a project that uses boost may look like this:
-<p>
-<pre>
-find_package(Boost 1.59.0)
-include_directories(${Boost_INCLUDE_DIRS})
-link_directories("${BOOST_ROOT}\\stage")
-add_library(mylib SHARED ${CORE_SRC} ${CORE_HDR})
-target_link_libraries(mylib PRIVATE ${Boost_LIBRARIES})
-</pre>
-</p>
-with all the ${Boost_XXX} variables defined by the Find_BOOST cmake module. After a whole wile trying to understand what was wrang I finally got the solution: one need to specify required boost libraries in the find command. Only in this case variable ${Boost_LIBRARIES} will be populated with corresponding libs!
-</p>
-<p>
-Working configuration for those who will occasionaly find this blog post in the late night after hours of debugging:
-<p>
-<pre>
-find_package(Boost 1.59.0 <font color="#f00">REQUIRED system thread</font>)
-include_directories(${Boost_INCLUDE_DIRS})
-link_directories("${BOOST_ROOT}\\stage")
-add_library(mylib SHARED ${CORE_SRC} ${CORE_HDR})
-target_link_libraries(mylib PRIVATE ${Boost_LIBRARIES})
-</pre>
-</p>
-</p>
-<p>
-Good luck in coding!
-</p>
+Nothing here yet.
 </body>
 </html>
