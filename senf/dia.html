@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+.line {
+  fill: none;
+  stroke: #000;
+  stroke-width: 1.5px;
+}
+
+</style>
+<div id="live_graph">
+</div>
+<svg width="960" height="500" id="live_graph"></svg>
+<script src="http://d3js.org/d3.v4.min.js"></script>
+<script src="js/graph.js"></script>
+<script>
+
+
+var live_graph = new LiveGraph("live_graph");
+
+function resolveAfter2Seconds(x) {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      live_graph.tick();
+    }, x);
+  });
+}
+
+resolveAfter2Seconds(500);
+resolveAfter2Seconds(1000);
+resolveAfter2Seconds(1500);
+resolveAfter2Seconds(2000);
+resolveAfter2Seconds(2500);
+resolveAfter2Seconds(3000);
+resolveAfter2Seconds(3500);
+resolveAfter2Seconds(4000);
+</script>
